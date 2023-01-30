@@ -50,5 +50,48 @@ namespace UnitTests.Lexer
             // the one provided as literal.
             Assert.Equal(expectedTokens, tokenList);
         }
+
+        /// <summary>
+        /// This test checks if the Scanner is able to
+        /// properly tokenize a function defined on multiple
+        /// lines of code.
+        /// </summary>
+        [Fact]
+        public void Tokenize_ScannerTokenizeFunc()
+        {
+            const string source =
+@"
+    func square(x)
+    {
+        return (x * x);
+    }
+";
+
+            // List of expected tokens
+            var expectedTokens = new List<Token>()
+            {
+                new Token(TokenType.Func, "func", 1),
+                new Token(TokenType.Identifier, "source", 1),
+                new Token(TokenType.OpenParen, "(", 1),
+                new Token(TokenType.Identifier, "x", 1),
+                new Token(TokenType.CloseParen, ")", 1),
+                new Token(TokenType.OpenCurly, "{", 2),
+                new Token(TokenType.Return, "return", 3),
+                new Token(TokenType.OpenParen, "(", 3),
+                new Token(TokenType.Identifier, "x", 3),
+                new Token(TokenType.Star, "*", 3),
+                new Token(TokenType.Identifier, "x", 3),
+                new Token(TokenType.CloseParen, ")", 3),
+                new Token(TokenType.Semicolon, ";", 3),
+                new Token(TokenType.CloseCurly, "}", 4)
+            };
+            var scanner = new Scanner(source);
+
+            var tokens = new List<Token>();
+            for (var token = scanner.ScanToken(); token.Type != TokenType.Eof; token = scanner.ScanToken())
+                tokens.Add(token);
+
+            Assert.Equal(expectedTokens, tokens);
+        }
     }
 }
