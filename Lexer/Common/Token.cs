@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lexer.Common
+﻿namespace Lexer.Common
 {
     /// <summary>
     /// Holds data to represent a Token in the language
