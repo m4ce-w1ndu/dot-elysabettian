@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexer", "Lexer\Lexer.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D147CF6F-3170-4418-829E-F7649046C5D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compiler", "Compiler\Compiler.csproj", "{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D147CF6F-3170-4418-829E-F7649046C5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D147CF6F-3170-4418-829E-F7649046C5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D147CF6F-3170-4418-829E-F7649046C5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
