@@ -36,6 +36,14 @@ namespace Compiler.Common.Types
             catch { file = null; }
         }
 
+        ~File()
+        {
+            if (file is null) return;
+            file.Close();
+            file.Dispose();
+            file = null;
+        }
+
         /// <summary>
         /// Allows to check if the file is properly open.
         /// </summary>
