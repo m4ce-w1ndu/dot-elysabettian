@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents an instance of a class.
     /// </summary>
-    public struct Instance
+    public class Instance
     {
         /// <summary>
         /// Class that has been instantiated.

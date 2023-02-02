@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a method.
     /// </summary>
-    public struct Method
+    public class Method
     {
         /// <summary>
         /// Instance of the class bound with this method.

@@ -3,7 +3,7 @@ namespace Compiler.Common.Types
     /// <summary>
     /// Represents a class in the language.
     /// </summary>
-    public struct Class
+    public class Class
     {
         /// <summary>
         /// Name of the class.

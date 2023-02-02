@@ -3,7 +3,7 @@
     /// <summary>
     /// Holds data representing a function.
     /// </summary>
-    public struct Function
+    public class Function
     {
         /// <summary>
         /// Number of function parameters.

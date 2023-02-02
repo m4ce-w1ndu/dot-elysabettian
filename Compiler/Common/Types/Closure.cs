@@ -5,7 +5,7 @@ namespace Compiler.Common.Types
     /// <summary>
     /// Represents a closure.
     /// </summary>
-    public struct Closure
+    public class Closure
     {
         /// <summary>
         /// Function associated to this closure.
