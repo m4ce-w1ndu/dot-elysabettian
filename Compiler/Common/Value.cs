@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Compiler.Common.Types;
 
 namespace Compiler.Common
 {
@@ -49,5 +46,62 @@ namespace Compiler.Common
         {
             return new Value(str);
         }
+    }
+
+    /// <summary>
+    /// Visits a value producing its corresponding output.
+    /// </summary>
+    public static class OutputVisitor
+    {
+        public static void Visit(double d) => Console.Write(d);
+
+        public static void Visit(bool b) => Console.Write(b ? "true" : "false");
+
+        public static void Visit(Type _) => Console.Write("null");
+
+        public static void Visit(string s) => Console.Write(s);
+
+        public static void Visit(Function f)
+        {
+            if (string.IsNullOrEmpty(f.Name)) Console.Write("<main>");
+            else Console.Write($"<fn {f.Name}>");
+        }
+
+        public static void Visit(NativeFunction _) => Console.Write("<native fn>");
+
+        public static void Visit(Closure c) => Visit(c.Function);
+
+        public static void Visit(Upvalue _) => Console.Write("upvalue");
+
+        public static void Visit(Class c) => Console.Write(c.Name);
+
+        public static void Visit(Instance i) => Console.Write($"{i.Class.Name} instance");
+
+        public static void Visit(Method m) => Visit(m.Function.Function);
+
+        public static void Visit(Types.File f) => Console.Write($"path: {f.Path}");
+
+        public static void Visit(Types.Array a)
+        {
+            Console.Write("array {");
+            for (int i = 0; i < a.Values.Count; ++i)
+            {
+                if (i < a.Values.Count - 1) Console.Write($"{a.Values[i]}, ");
+                else Console.Write(a.Values[i]);
+            }
+            Console.Write(" }");
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean value based on the type given.
+    /// </summary>
+    public static class FalseVisitor
+    {
+        public static bool Visit(bool b) { return !b; }
+
+        public static bool Visit(System.Type _) => true;
+
+        public static bool Visit<T>(T _) => false;
     }
 }
