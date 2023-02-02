@@ -60,8 +60,7 @@ namespace UnitTests.Lexer
         public void Tokenize_ScannerTokenizeFunc()
         {
             const string source =
-@"
-    func square(x)
+@"  func square(x)
     {
         return (x * x);
     }
@@ -71,7 +70,7 @@ namespace UnitTests.Lexer
             var expectedTokens = new List<Token>()
             {
                 new Token(TokenType.Func, "func", 1),
-                new Token(TokenType.Identifier, "source", 1),
+                new Token(TokenType.Identifier, "square", 1),
                 new Token(TokenType.OpenParen, "(", 1),
                 new Token(TokenType.Identifier, "x", 1),
                 new Token(TokenType.CloseParen, ")", 1),
