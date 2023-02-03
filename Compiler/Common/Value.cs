@@ -8,6 +8,11 @@ namespace Compiler.Common
     /// </summary>
     public class Value
     {
+        /// <summary>
+        /// Max number of variables in functions.
+        /// </summary>
+        public const int UINT8_COUNT = byte.MaxValue + 1;
+
         private object? value;
 
         /// <summary>
