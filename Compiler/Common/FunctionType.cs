@@ -6,7 +6,7 @@
     public enum FunctionType
     {
         Function,
-        NativeFunction,
+        Initializer,
         Method,
         Main
     }
