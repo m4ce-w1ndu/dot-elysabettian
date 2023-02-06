@@ -51,6 +51,11 @@ namespace Compiler.Common
         {
             return new Value(str);
         }
+
+        public static implicit operator Value(Function function)
+        {
+            return new Value(function);
+        }
     }
 
     /// <summary>

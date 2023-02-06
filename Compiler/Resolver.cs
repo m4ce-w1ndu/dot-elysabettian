@@ -68,7 +68,7 @@ namespace Compiler
     /// </summary>
     public class Resolver
     {
-        public Parser Parser { get; set; }
+        public Compiler Parser { get; set; }
 
         public FunctionType Type { get; set; }
 
@@ -82,7 +82,7 @@ namespace Compiler
 
         public int ScopeDepth { get; set; }
 
-        public Resolver(Parser parser, FunctionType type, Resolver? enclosing)
+        public Resolver(Compiler parser, FunctionType type, Resolver? enclosing)
         {
             Parser = parser;
             Type = type;
