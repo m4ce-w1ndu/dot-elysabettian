@@ -497,6 +497,11 @@ namespace Compiler
             EmitConstant(str);
         }
 
+        /// <summary>
+        /// Declares a named variable
+        /// </summary>
+        /// <param name="name">Name of the variable</param>
+        /// <param name="canAssign">Can be assigned</param>
         private void NamedVariable(string name, bool canAssign)
         {
             Instruction getOp;
@@ -528,11 +533,17 @@ namespace Compiler
                 Emit(getOp, (byte)arg);
         }
 
+        /// <summary>
+        /// Creates a new variable parsing the source code
+        /// </summary>
         private void Variable(bool canAssign)
         {
             NamedVariable(Previous.Text, canAssign);
         }
 
+        /// <summary>
+        /// Parses a super (superclass) expression
+        /// </summary>
         private void Super(bool canAssign)
         {
             if (ClassCompiler is null)
