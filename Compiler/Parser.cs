@@ -138,6 +138,48 @@ namespace Compiler
             Emit(Instruction.Const, MakeConstant(value));
         }
 
+        private void PatchJump(int offset)
+        {
+            var jump = CurrentChunk().Count - offset - 2;
+
+            if (jump > ushort.MaxValue)
+                Error("Jump is too long.");
+
+            CurrentChunk().SetCode(offset, (byte)((jump >> 8) & 0xff));
+            CurrentChunk().SetCode(offset + 1, (byte)(jump & 0xff));
+        }
+
+        private Function EndCompiler()
+        {
+            EmitReturn();
+            return Resolver.Function;
+        }
+
+        private void Array(bool canAssign)
+        {
+            int count = 0;
+
+            if (!Check(TokenType.CloseSquare))
+            {
+                do
+                {
+                    if (Check(TokenType.CloseSquare)) break;
+                    // ParsePrecedence(Precedence.Or);
+
+                    if (count == byte.MaxValue + 1)
+                        Error("List literals do not allow more than 255 items.");
+
+                    count++;
+                }
+                while (Match(TokenType.Comma));
+            }
+
+            // Consume(TokenType.Square, "Expected ']' after list literal.");
+
+            Emit(Instruction.ArrBuild);
+            Emit((byte)count);
+        }
+
         public void Error(string message)
         {
             
