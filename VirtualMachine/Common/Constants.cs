@@ -13,5 +13,10 @@ namespace VirtualMachine.Common
         /// Max size of stack
         /// </summary>
         public const int STACK_MAX = (FRAMES_MAX * Value.UINT8_COUNT);
+
+        /// <summary>
+        /// Default initializer name
+        /// </summary>
+        public const string INIT_STRING = "init";
     }
 }
