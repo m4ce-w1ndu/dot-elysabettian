@@ -859,7 +859,8 @@ namespace Compiler
             Consume(TokenType.OpenParen, "Expected '(' after 'for'.");
             if (Match(TokenType.Var))
                 VarDeclaration();
-            else if (Match(TokenType.Semicolon));
+            else if (Match(TokenType.Semicolon))
+                ((Action)(() => { }))();
             else
                 ExpressionStatement();
 
@@ -1065,7 +1066,8 @@ namespace Compiler
             Console.Error.Write($"[line {token.Line} Error");
             if (token.Type == TokenType.Eof)
                 Console.Error.Write(" at end");
-            else if (token.Type == TokenType.Error) ;
+            else if (token.Type == TokenType.Error)
+                ((Action)(() => { }))();
             else
                 Console.Error.Write($" at '{token.Text}'");
 
