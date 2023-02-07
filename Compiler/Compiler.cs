@@ -561,6 +561,9 @@ namespace Compiler
             Emit(Instruction.GetSup, (byte)name);
         }
 
+        /// <summary>
+        /// Parses this expression
+        /// </summary>
         private void This(bool canAssign)
         {
             if (ClassCompiler is null)
@@ -572,6 +575,9 @@ namespace Compiler
             Variable(false);
         }
 
+        /// <summary>
+        /// Parses And expressions
+        /// </summary>
         private void And(bool canAssign)
         {
             var endJump = EmitJump(Instruction.JmpZ);
@@ -582,6 +588,9 @@ namespace Compiler
             PatchJump(endJump);
         }
 
+        /// <summary>
+        /// Parses unary expressions
+        /// </summary>
         private void Unary(bool canAssign)
         {
             var operatorType = Previous.Type;
@@ -597,6 +606,9 @@ namespace Compiler
             }
         }
 
+        /// <summary>
+        /// Calculates the parsing precedence
+        /// </summary>
         private void ParsePrecedence(Precedence precedence)
         {
             Advance();
@@ -624,11 +636,17 @@ namespace Compiler
             }
         }
 
+        /// <summary>
+        /// Creates a new constant used as identifier
+        /// </summary>
         private int IdentifierConstant(string name)
         {
             return MakeConstant(name);
         }
 
+        /// <summary>
+        /// Parses a variable
+        /// </summary>
         private byte ParseVariable(string errorMessage)
         {
             Consume(TokenType.Identifier, errorMessage);
@@ -639,6 +657,9 @@ namespace Compiler
             return (byte)IdentifierConstant(Previous.Text);
         }
 
+        /// <summary>
+        /// Defines a new variable
+        /// </summary>
         private void DefineVariable(byte global)
         {
             if (Resolver.IsLocal)
@@ -650,6 +671,9 @@ namespace Compiler
             Emit(Instruction.DefGlob, global);
         }
 
+        /// <summary>
+        /// Defines a new argument list
+        /// </summary>
         private byte ArgsList()
         {
             byte argCount = 0;
@@ -668,11 +692,17 @@ namespace Compiler
             return argCount;
         }
 
+        /// <summary>
+        /// Expression parsing
+        /// </summary>
         private void Expression()
         {
             ParsePrecedence(Precedence.Assignment);
         }
 
+        /// <summary>
+        /// Parses a block of statements
+        /// </summary>
         private void Block()
         {
             while (!Check(TokenType.CloseCurly) && !Check(TokenType.Eof))
@@ -681,6 +711,9 @@ namespace Compiler
             Consume(TokenType.CloseCurly, "Expected '}' after block.");
         }
 
+        /// <summary>
+        /// Parses a function
+        /// </summary>
         private void Function(FunctionType type)
         {
             Resolver = new Resolver(this, type, Resolver);
@@ -718,6 +751,9 @@ namespace Compiler
             }
         }
 
+        /// <summary>
+        /// Parses a method
+        /// </summary>
         private void Method()
         {
             Consume(TokenType.Identifier, "Expected method name.");
@@ -727,6 +763,9 @@ namespace Compiler
             Emit(Instruction.Method, (byte)constant);
         }
 
+        /// <summary>
+        /// Parses a class declaration
+        /// </summary>
         private void ClassDeclaration()
         {
             Consume(TokenType.Identifier, "Expected class name.");
@@ -772,6 +811,9 @@ namespace Compiler
             ClassCompiler = ClassCompiler.Enclosing;
         }
 
+        /// <summary>
+        /// Parses a function declaration
+        /// </summary>
         private void FuncDeclaration()
         {
             var global = ParseVariable("Expected function name.");
@@ -780,6 +822,9 @@ namespace Compiler
             DefineVariable(global);
         }
 
+        /// <summary>
+        /// Parses a variable declaration
+        /// </summary>
         private void VarDeclaration()
         {
             var global = ParseVariable("Expected variable name.");
@@ -794,6 +839,9 @@ namespace Compiler
             DefineVariable(global);
         }
 
+        /// <summary>
+        /// Parses an expression statement
+        /// </summary>
         private void ExpressionStatement()
         {
             Expression();
@@ -801,6 +849,9 @@ namespace Compiler
             Consume(TokenType.Semicolon, "Expected ';' after expression.");
         }
 
+        /// <summary>
+        /// Parses a for statement
+        /// </summary>
         private void ForStatement()
         {
             Resolver.BeginScope();
@@ -850,6 +901,9 @@ namespace Compiler
             Resolver.EndScope();
         }
 
+        /// <summary>
+        /// Parses an if statement
+        /// </summary>
         private void IfStatement()
         {
             Consume(TokenType.OpenParen, "Expected '(' after 'if'.");
@@ -867,6 +921,9 @@ namespace Compiler
             PatchJump(elseJump);
         }
 
+        /// <summary>
+        /// Parses a generic declaration
+        /// </summary>
         private void Declaration()
         {
             if (Match(TokenType.Class))
@@ -881,6 +938,9 @@ namespace Compiler
             if (panicMode) Sync();
         }
 
+        /// <summary>
+        /// Parses a generic statement
+        /// </summary>
         private void Statement()
         {
             if (Match(TokenType.Print))
@@ -903,6 +963,9 @@ namespace Compiler
                 ExpressionStatement();
         }
 
+        /// <summary>
+        /// Parses a print statement
+        /// </summary>
         private void PrintStatement()
         {
             Expression();
@@ -910,6 +973,9 @@ namespace Compiler
             Emit(Instruction.Pnt);
         }
 
+        /// <summary>
+        /// Parses a return statement
+        /// </summary>
         private void ReturnStatement()
         {
             if (Resolver.Type == FunctionType.Main)
@@ -928,6 +994,9 @@ namespace Compiler
             }
         }
 
+        /// <summary>
+        /// Parses a while statement
+        /// </summary>
         private void WhileStatement()
         {
             var loopStart = CurrentChunk().Count;
@@ -947,6 +1016,10 @@ namespace Compiler
             Emit(Instruction.Pop);
         }
 
+        /// <summary>
+        /// Syncs the status of the Compiler after an error
+        /// occured
+        /// </summary>
         private void Sync()
         {
             panicMode = false;
@@ -971,11 +1044,18 @@ namespace Compiler
             }
         }
 
+        /// <summary>
+        /// Returns the parsing rule corresponding with the
+        /// specific token
+        /// </summary>
         private ParseRule GetRule(TokenType type)
         {
             return rules[(int)type];
         }
 
+        /// <summary>
+        /// Signals an error at a specific token
+        /// </summary>
         private void ErrorAt(Token token, string message)
         {
             if (panicMode) return;
@@ -993,16 +1073,25 @@ namespace Compiler
             hadError = true;
         }
 
+        /// <summary>
+        /// Signals an error parsing the last token
+        /// </summary>
         public void Error(string message)
         {
-            
+            ErrorAt(Previous, message);
         }
 
+        /// <summary>
+        /// Signals an error parsing the current token
+        /// </summary>
         public void ErrorAtCurrent(string message)
         {
-
+            ErrorAt(Current, message);
         }
 
+        /// <summary>
+        /// Returns a reference to the current chunk
+        /// of active memory
         private Chunk CurrentChunk()
         {
             return Resolver.Function.Chunk;
