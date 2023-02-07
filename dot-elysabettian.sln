@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexer", "Lexer\Lexer.csproj", "{151642B8-72B2-4D76-944C-54F29FD4558A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lexer", "Lexer\Lexer.csproj", "{151642B8-72B2-4D76-944C-54F29FD4558A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D147CF6F-3170-4418-829E-F7649046C5D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D147CF6F-3170-4418-829E-F7649046C5D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compiler", "Compiler\Compiler.csproj", "{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compiler", "Compiler\Compiler.csproj", "{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualMachine", "VirtualMachine\VirtualMachine.csproj", "{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
