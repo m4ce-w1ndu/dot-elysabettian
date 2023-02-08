@@ -56,6 +56,11 @@ namespace Compiler.Common
         {
             return new Value(function);
         }
+
+        public static implicit operator Value(Monostate _)
+        {
+            return new Value(null);
+        }
     }
 
     /// <summary>
