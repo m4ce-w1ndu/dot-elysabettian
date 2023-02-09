@@ -25,6 +25,14 @@ namespace Compiler.Common
         }
 
         /// <summary>
+        /// Constructs an empty value
+        /// </summary>
+        public Value()
+        {
+            value = new Monostate();
+        }
+
+        /// <summary>
         /// Returns a value of the given type.
         /// </summary>
         /// <typeparam name="T">Type of the value to get.</typeparam>
@@ -47,19 +55,44 @@ namespace Compiler.Common
             return new Value(boolean);
         }
 
-        public static implicit operator Value(string str)
+        public static implicit operator Value(string? str)
         {
             return new Value(str);
         }
 
-        public static implicit operator Value(Function function)
+        public static implicit operator Value(Function? function)
         {
             return new Value(function);
         }
 
-        public static implicit operator Value(Monostate _)
+        public static implicit operator Value(Monostate? _)
         {
             return new Value(null);
+        }
+
+        public static implicit operator Value(Method? method)
+        {
+            return new Value(method);
+        }
+
+        public static implicit operator Value(Closure? closure)
+        {
+            return new Value(closure);
+        }
+
+        public static implicit operator Value(NativeFunction? native)
+        {
+            return new Value(native);
+        }
+
+        public static implicit operator Value(Types.Array? array)
+        {
+            return new Value(array);
+        }
+
+        public static implicit operator Value(Class? classValue)
+        {
+            return new Value(classValue);
         }
     }
 

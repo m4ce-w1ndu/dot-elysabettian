@@ -66,5 +66,15 @@ namespace Compiler.Common
         {
             return (byte)instr;
         }
+
+        /// <summary>
+        /// Returns the corresponding instruction based on the given value.
+        /// </summary>
+        /// <param name="value">Byte instruction value.</param>
+        /// <returns>Instruction enumeration value.</returns>
+        public static Instruction GetInstruction(this byte value)
+        {
+            return (Instruction)value;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Compiler.Common.Types
         /// <summary>
         /// Methods in the class.
         /// </summary>
-        public Dictionary<string, Closure> Methods { get; init; }
+        public Dictionary<string, Closure> Methods { get; set; }
 
         /// <summary>
         /// Constructs a new class.
