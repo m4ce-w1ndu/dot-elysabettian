@@ -187,7 +187,7 @@ namespace VirtualMachine
             Push(closure);
             Call(closure, 0);
 
-            throw new NotImplementedException();
+            return Run();
         }
 
         private void DefineNative(string name, Func<int, IEnumerable<Value>, Value> function)

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compiler", "Compiler\Compiler.csproj", "{961C6DD9-4DB3-409A-9A38-BB1A1FF53B93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualMachine", "VirtualMachine\VirtualMachine.csproj", "{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualMachine", "VirtualMachine\VirtualMachine.csproj", "{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{D4A1EA50-0F2C-4457-A609-893D8C7F1AEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A5FACE5-4369-4EB1-BAF6-3C66BF19B50A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4A1EA50-0F2C-4457-A609-893D8C7F1AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4A1EA50-0F2C-4457-A609-893D8C7F1AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4A1EA50-0F2C-4457-A609-893D8C7F1AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4A1EA50-0F2C-4457-A609-893D8C7F1AEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

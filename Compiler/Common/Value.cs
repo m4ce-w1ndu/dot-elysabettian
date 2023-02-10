@@ -1,4 +1,7 @@
 using Compiler.Common.Types;
+using System.Text;
+using Array = Compiler.Common.Types.Array;
+using File = Compiler.Common.Types.File;
 
 namespace Compiler.Common
 {
@@ -94,6 +97,73 @@ namespace Compiler.Common
         {
             return new Value(classValue);
         }
+
+        public override string ToString()
+        {
+            if (value is double d)
+            {
+                return d.ToString();
+            }
+
+            if (value is bool b)
+            {
+                return b.ToString().ToLower();
+            }
+
+            if (value is Monostate)
+                return "null";
+
+            if (value is string s)
+                return s;
+
+            if (value is Function f)
+            {
+                if (string.IsNullOrEmpty(f.Name)) return "<main>";
+                return $"<fn {f.Name}>";
+            }
+
+            if (value is NativeFunction nf)
+                return "<native fn>";
+
+            if (value is Closure c)
+            {
+                if (string.IsNullOrEmpty(c.Function.Name)) return "<main>";
+                return $"<fn {c.Function.Name}>";
+            }
+
+            if (value is Upvalue)
+                return "upvalue";
+
+            if (value is Class cl)
+                return cl.Name;
+
+            if (value is Instance i)
+                return $"{i.Class.Name} instance";
+
+            if (value is Method m)
+            {
+                if (string.IsNullOrEmpty(m.Function.Function.Name)) return "<main>";
+                return $"<fn {m.Function.Function.Name}>";
+            }
+
+            if (value is File fi)
+                return $"path: {fi.Path}";
+
+            if (value is Array ar)
+            {
+                var sb = new StringBuilder("array {");
+                for (int idx = 0; idx < ar.Values.Count; ++idx)
+                {
+                    if (idx < ar.Values.Count - 1) sb.Append($"{ar.Values[idx]}, ");
+                    else sb.Append(ar.Values[idx]);
+                }
+                sb.Append(" }");
+
+                return sb.ToString();
+            }
+
+            return "";
+        }
     }
 
     /// <summary>
@@ -105,7 +175,7 @@ namespace Compiler.Common
 
         public static void Visit(bool b) => Console.Write(b ? "true" : "false");
 
-        public static void Visit(Type _) => Console.Write("null");
+        public static void Visit(Monostate _) => Console.Write("null");
 
         public static void Visit(string s) => Console.Write(s);
 
